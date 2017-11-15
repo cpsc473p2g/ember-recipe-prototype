@@ -9,4 +9,5 @@ export default DS.Model.extend({
 	sourceUrl: DS.attr(),
 	sourceSiteName: DS.attr(),
 	sourceSiteUrl: DS.attr(),
+	attributionHtml: DS.attr(),
 });
