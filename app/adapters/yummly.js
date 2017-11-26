@@ -41,7 +41,7 @@ export default DS.RESTAdapter.extend({
 	},
 
 	updateRecord() {
-		Ember.RSVP.reject('Cannot delete recipes in Yummly');
+		Ember.RSVP.reject('Cannot update recipes in Yummly');
 	},
 
 	deleteRecord() {
