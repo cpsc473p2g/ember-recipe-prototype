@@ -4,7 +4,7 @@ import DS from 'ember-data';
 const YUMMLY_APP_ID = '0fd0fbe1';
 const YUMMLY_APP_KEY = '92cf22bd5cc8e3ed8ae241e43d52832c';
 
-export default DS.RESTAdapter.extend({
+export default DS.Adapter.extend({
 	findRecord(store, type, id, snapshot) {
 		return new Ember.RSVP.Promise(function(resolve, reject) {
 			const url = 'http://api.yummly.com/v1/api/recipe/' + id;
