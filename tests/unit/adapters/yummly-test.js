@@ -5,7 +5,6 @@ moduleFor('adapter:yummly', 'Unit | Adapter | yummly', {
   // needs: ['serializer:foo']
 });
 
-// Replace this with your real tests.
 test('can retrieve recipe', function(assert) {
   let adapter = this.subject();
   const ID = 'Hot-Turkey-Salad-Sandwiches-Allrecipes';
