@@ -1,0 +1,11 @@
+<h1>{{model.name}}</h1>
+<div>From <a href="{{model.sourceUrl}}">{{model.sourceSiteName}}</a></div>
+<div>Makes {{model.yield}}</div>
+<img src="{{model.imageUrl}}" alt=""/>
+<h2>Ingredients</h2>
+<ul>
+	{{#each model.ingredientLines as |ingredient|}}
+	<li>{{ingredient}}</li>
+	{{/each}}
+</ul>
+<div>{{{model.attributionHtml}}}</div>
