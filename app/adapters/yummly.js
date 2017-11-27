@@ -4,32 +4,40 @@ import DS from 'ember-data';
 const YUMMLY_APP_ID = '0fd0fbe1';
 const YUMMLY_APP_KEY = '92cf22bd5cc8e3ed8ae241e43d52832c';
 
+function getRecipe(id) {
+	const url = 'http://api.yummly.com/v1/api/recipe/' + id;
+	return Ember.$.getJSON(url, {
+		_app_id: YUMMLY_APP_ID,
+		_app_key: YUMMLY_APP_KEY,
+	});
+}
+
+function recipeDataToJsonApi(data) {
+	const attributes = {
+		'name': data.name,
+		'yield': data.yield,
+		'ingredientLines': data.ingredientLines,
+		'imageUrl': data.images.hostedLargeUrl,
+		'sourceUrl': data.source.sourceRecipeUrl,
+		'sourceSiteName': data.source.sourceDisplayName,
+		'sourceSiteUrl': data.source.sourceSiteUrl,
+		'attributionHtml': data.attribution.html,
+	};
+	return {
+		'data': {
+			'type': 'recipe',
+			'id': id,
+			'attributes': attributes,
+		}
+	};
+}
+
 export default DS.Adapter.extend({
 	findRecord(store, type, id, snapshot) {
 		if(type.modelName === 'recipe') {
 			return new Ember.RSVP.Promise(function(resolve, reject) {
-				const url = 'http://api.yummly.com/v1/api/recipe/' + id;
-				Ember.$.getJSON(url, {
-					_app_id: YUMMLY_APP_ID,
-					_app_key: YUMMLY_APP_KEY,
-				}).then(function(data) {
-					let attributes = {
-						'name': data.name,
-						'yield': data.yield,
-						'ingredientLines': data.ingredientLines,
-						'imageUrl': data.images.hostedLargeUrl,
-						'sourceUrl': data.source.sourceRecipeUrl,
-						'sourceSiteName': data.source.sourceDisplayName,
-						'sourceSiteUrl': data.source.sourceSiteUrl,
-						'attributionHtml': data.attribution.html,
-					};
-					resolve({
-						'data': {
-							'type': 'recipe',
-							'id': id,
-							'attributes': attributes,
-						}
-					});
+				getRecipe(id).then(function(data) {
+					resolve(recipeDataToJsonApi(data));
 				},
 				function(jqXhr, textStatus, errorThrown) {
 					reject(errorThrown);
