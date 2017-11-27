@@ -12,7 +12,7 @@ function getRecipe(id) {
 	});
 }
 
-function recipeDataToJsonApi(data) {
+function recipeDataToJsonApi(id, data) {
 	const attributes = {
 		'name': data.name,
 		'yield': data.yield,
@@ -36,7 +36,7 @@ export default DS.Adapter.extend({
 	findRecord(store, type, id, snapshot) {
 		return new Ember.RSVP.Promise(function(resolve, reject) {
 			getRecipe(id).then(function(data) {
-				resolve(recipeDataToJsonApi(data));
+				resolve(recipeDataToJsonApi(id, data));
 			},
 			function(jqXhr, textStatus, errorThrown) {
 				reject(errorThrown);
