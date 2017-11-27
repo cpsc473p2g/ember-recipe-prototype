@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('adapter:yummly', 'Unit | Adapter | yummly', {
+moduleFor('adapter:recipe', 'Unit | Adapter | recipe', {
   // Specify the other units that are required for this test.
   // needs: ['serializer:foo']
 });
@@ -8,8 +8,7 @@ moduleFor('adapter:yummly', 'Unit | Adapter | yummly', {
 test('can retrieve recipe', function(assert) {
   let adapter = this.subject();
   const ID = 'Hot-Turkey-Salad-Sandwiches-Allrecipes';
-  const Recipe = { modelName: 'recipe' };
-  let recipePromise = adapter.findRecord(null, Recipe, ID, null);
+  let recipePromise = adapter.findRecord(null, null, ID, null);
   return recipePromise.then(function(recipeData) {
     assert.equal(recipeData.data.id, ID);
   })

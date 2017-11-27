@@ -34,18 +34,14 @@ function recipeDataToJsonApi(data) {
 
 export default DS.Adapter.extend({
 	findRecord(store, type, id, snapshot) {
-		if(type.modelName === 'recipe') {
-			return new Ember.RSVP.Promise(function(resolve, reject) {
-				getRecipe(id).then(function(data) {
-					resolve(recipeDataToJsonApi(data));
-				},
-				function(jqXhr, textStatus, errorThrown) {
-					reject(errorThrown);
-				});
+		return new Ember.RSVP.Promise(function(resolve, reject) {
+			getRecipe(id).then(function(data) {
+				resolve(recipeDataToJsonApi(data));
+			},
+			function(jqXhr, textStatus, errorThrown) {
+				reject(errorThrown);
 			});
-		} else {
-			return Ember.RSVP.reject('Unsupported model type');
-		}
+		});
 	},
 
 	createRecord() {
