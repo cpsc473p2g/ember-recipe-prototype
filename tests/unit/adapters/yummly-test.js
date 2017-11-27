@@ -8,7 +8,8 @@ moduleFor('adapter:yummly', 'Unit | Adapter | yummly', {
 test('can retrieve recipe', function(assert) {
   let adapter = this.subject();
   const ID = 'Hot-Turkey-Salad-Sandwiches-Allrecipes';
-  let recipePromise = adapter.findRecord(null, null, ID, null);
+  const Recipe = { modelName: 'recipe' };
+  let recipePromise = adapter.findRecord(null, Recipe, ID, null);
   return recipePromise.then(function(recipeData) {
     assert.equal(recipeData.data.id, ID);
   })
