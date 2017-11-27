@@ -33,7 +33,7 @@ function recipeDataToJsonApi(id, data) {
 }
 
 export default DS.Adapter.extend({
-	findRecord(store, type, id, snapshot) {
+	findRecord(store, type, id) {
 		return new Ember.RSVP.Promise(function(resolve, reject) {
 			getRecipe(id).then(function(data) {
 				resolve(recipeDataToJsonApi(id, data));
@@ -60,7 +60,7 @@ export default DS.Adapter.extend({
 		Ember.RSVP.reject('Find all not supported in Yummly');
 	},
 
-	query(store, type, query, recordArray) {
+	query() {
 		Ember.RSVP.reject('TODO: query()');
 	},
 });
