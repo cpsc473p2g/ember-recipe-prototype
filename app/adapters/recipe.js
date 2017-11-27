@@ -16,16 +16,16 @@ function recipeDataToJsonApi(id, data) {
 	const attributes = {
 		'name': data.name,
 		'yield': data.yield,
-		'ingredientLines': data.ingredientLines,
-		'imageUrl': data.images.hostedLargeUrl,
-		'sourceUrl': data.source.sourceRecipeUrl,
-		'sourceSiteName': data.source.sourceDisplayName,
-		'sourceSiteUrl': data.source.sourceSiteUrl,
-		'attributionHtml': data.attribution.html,
+		'ingredient-lines': data.ingredientLines,
+		'image-url': data.images[0].hostedLargeUrl,
+		'source-url': data.source.sourceRecipeUrl,
+		'source-site-name': data.source.sourceDisplayName,
+		'source-site-url': data.source.sourceSiteUrl,
+		'attribution-html': data.attribution.html,
 	};
 	return {
 		'data': {
-			'type': 'recipe',
+			'type': 'recipes',
 			'id': id,
 			'attributes': attributes,
 		}
