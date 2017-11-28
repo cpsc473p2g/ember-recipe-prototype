@@ -5,7 +5,7 @@ const YUMMLY_APP_ID = '0fd0fbe1';
 const YUMMLY_APP_KEY = '92cf22bd5cc8e3ed8ae241e43d52832c';
 
 function getRecipe(id) {
-	const url = 'https://api.yummly.com/v1/api/recipe/' + id;
+	const url = 'https://api.yummly.com/v1/api/recipe/' + encodeURIComponent(id);
 	return Ember.$.getJSON(url, {
 		_app_id: YUMMLY_APP_ID,
 		_app_key: YUMMLY_APP_KEY,
