@@ -6,9 +6,20 @@ const YUMMLY_APP_KEY = '92cf22bd5cc8e3ed8ae241e43d52832c';
 
 function getRecipe(id) {
 	const url = 'https://api.yummly.com/v1/api/recipe/' + encodeURIComponent(id);
-	return Ember.$.getJSON(url, {
+	return ajaxDeferredToPromise(Ember.$.getJSON(url, {
 		_app_id: YUMMLY_APP_ID,
 		_app_key: YUMMLY_APP_KEY,
+	}));
+}
+
+function ajaxDeferredToPromise(ajaxDeferred) {
+	return new Ember.RSVP.Promise(function(resolve, reject) {
+		ajaxDeferred.then(function(data) {
+			resolve(data);
+		},
+		function(jqXhr, textStatus, errorThrown) {
+			reject(errorThrown);
+		});
 	});
 }
 
@@ -34,13 +45,8 @@ function recipeDataToJsonApi(id, data) {
 
 export default DS.Adapter.extend({
 	findRecord(store, type, id) {
-		return new Ember.RSVP.Promise(function(resolve, reject) {
-			getRecipe(id).then(function(data) {
-				resolve(recipeDataToJsonApi(id, data));
-			},
-			function(jqXhr, textStatus, errorThrown) {
-				reject(errorThrown);
-			});
+		return getRecipe(id).then(function(data) {
+			return recipeDataToJsonApi(id, data);
 		});
 	},
 
