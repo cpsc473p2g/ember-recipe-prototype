@@ -1,15 +1,10 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-
-const YUMMLY_APP_ID = '0fd0fbe1';
-const YUMMLY_APP_KEY = '92cf22bd5cc8e3ed8ae241e43d52832c';
+import ENV from 'ember-quickstart/config/environment';
 
 function getRecipe(id) {
 	const url = 'https://api.yummly.com/v1/api/recipe/' + encodeURIComponent(id);
-	return ajaxDeferredToPromise(Ember.$.getJSON(url, {
-		_app_id: YUMMLY_APP_ID,
-		_app_key: YUMMLY_APP_KEY,
-	}));
+	return ajaxDeferredToPromise(Ember.$.getJSON(url, ENV.APP.yummlyCredentials));
 }
 
 function ajaxDeferredToPromise(ajaxDeferred) {
