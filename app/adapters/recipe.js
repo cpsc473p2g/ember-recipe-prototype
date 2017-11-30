@@ -18,7 +18,7 @@ function ajaxDeferredToPromise(ajaxDeferred) {
 	});
 }
 
-function recipeDataToJsonApi(id, data) {
+function recipeDataToJsonApiResource(id, data) {
 	const attributes = {
 		'name': data.name,
 		'yield': data.yield,
@@ -30,18 +30,18 @@ function recipeDataToJsonApi(id, data) {
 		'attribution-html': data.attribution.html,
 	};
 	return {
-		'data': {
-			'type': 'recipes',
-			'id': id,
-			'attributes': attributes,
-		}
+		'type': 'recipes',
+		'id': id,
+		'attributes': attributes,
 	};
 }
 
 export default DS.Adapter.extend({
 	findRecord(store, type, id) {
 		return getRecipe(id).then(function(data) {
-			return recipeDataToJsonApi(id, data);
+			return {
+				"data": recipeDataToJsonApiResource(id, data)
+			};
 		});
 	},
 
