@@ -7,6 +7,20 @@ function getRecipe(id) {
 	return ajaxDeferredToPromise(Ember.$.getJSON(url, ENV.APP.yummlyCredentials));
 }
 
+function queryRecipes(queryParams) {
+	const url = 'https://api.yummly.com/v1/api/recipes';
+	let parameters = {};
+	addProperties(parameters, ENV.APP.yummlyCredentials);
+	addProperties(parameters, queryParams);
+	return ajaxDeferredToPromise(Ember.$.getJSON(url, parameters));
+}
+
+function addProperties(target, source) {
+	Object.keys(source).forEach(function(key) {
+		target[key] = source[key];
+	});
+}
+
 function ajaxDeferredToPromise(ajaxDeferred) {
 	return new Ember.RSVP.Promise(function(resolve, reject) {
 		ajaxDeferred.then(function(data) {
@@ -36,6 +50,16 @@ function recipeDataToJsonApiResource(id, data) {
 	};
 }
 
+function queryResultsToJsonApiResources(results) {
+	const matches = results.matches;
+	return Ember.RSVP.all(matches.map(function(match) {
+		return getRecipe(match.id)
+		.then(function(recipeData) {
+			return recipeDataToJsonApiResource(match.id, recipeData);
+		});
+	}));
+}
+
 export default DS.Adapter.extend({
 	findRecord(store, type, id) {
 		return getRecipe(id).then(function(data) {
@@ -61,7 +85,13 @@ export default DS.Adapter.extend({
 		Ember.RSVP.reject('Find all not supported in Yummly');
 	},
 
-	query() {
-		Ember.RSVP.reject('TODO: query()');
+	query(store, type, query) {
+		return queryRecipes(query)
+		.then(queryResultsToJsonApiResources)
+		.then(function(resources) {
+			return {
+				'data': resources
+			}
+		});
 	},
 });
