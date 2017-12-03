@@ -10,7 +10,10 @@ Router.map(function() {
   this.route('recipe', { path: '/recipe/:recipe_id' });
   this.route('favorites', function() {
     this.route('new');
+    this.route('edit', {path: '/edit/:favorite_id'});
   });
+
+  this.route('tasks', function() {});
 });
 
 export default Router;

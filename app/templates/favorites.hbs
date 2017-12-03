@@ -1,2 +1,8 @@
-<h1>My Favorite Recipes</h1>
 {{outlet}}
+
+<h1>My Favorite Recipes</h1>
+{{#each model as |favorite|}}
+  <div class="well">
+    <h4>{{#link-to 'favorites.edit' favorite.id}}{{favorite.title}}{{/link-to}}</h4>
+  </div>
+{{/each}}

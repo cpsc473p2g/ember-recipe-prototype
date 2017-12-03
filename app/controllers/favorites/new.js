@@ -3,9 +3,21 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   actions:{
     addTask: function(){
-      var recipe = this.get('title');
+      var title = this.get('title');
 
-      alert(recipe);
+      //create new favorite
+      var newFavorite = this.store.createRecord('favorite',{
+        title: title
+      });
+
+      //save favorite to database
+      newFavorite.save();
+
+      //clear form
+      this.setProperties({
+        title: 'test: cleared'
+      });
+      alert("created:" + title);
     }
   }
 });
