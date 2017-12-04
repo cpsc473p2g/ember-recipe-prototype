@@ -38,6 +38,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      yummlyCredentials: {
+        _app_id: '0fd0fbe1',
+        _app_key: '92cf22bd5cc8e3ed8ae241e43d52832c',
+      },
     }
   };
 
