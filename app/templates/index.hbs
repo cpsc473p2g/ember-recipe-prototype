@@ -1,0 +1,9 @@
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Search:</label>
+    {{input class="form-control" value=qValue placeholder="chicken"}}
+    <button {{action 'search' qValue}} class="btn btn-primary">Search</button>
+  </div>
+</form>
+
+{{outlet}}
