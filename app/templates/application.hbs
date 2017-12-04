@@ -1,22 +1,24 @@
 <nav class="navbar navbar-default">
-      <a class="navbar-brand" href="#">Recipe Recon</a>
+  <a class="navbar-brand" href="#">Recipe Recon</a>
 
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="nav navbar-nav">
-          <li>{{#link-to 'favorites'}}My Favorites{{/link-to}}</li>
-        </ul>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="nav navbar-nav">
+      <li>
+        {{#link-to 'favorites'}}My Favorites{{/link-to}}
+      </li>
+    </ul>
+  </div>
+</nav>
 
-      </div>
-    </nav>
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {{outlet}}
+    </div>
 
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-12">
-          {{outlet}}
-        </div>
-
-      </div>
+  </div>
 
 
-    </main><!-- /.container -->
+</main>
+<!-- /.container -->

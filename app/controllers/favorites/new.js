@@ -15,9 +15,9 @@ export default Controller.extend({
 
       //clear form
       this.setProperties({
-        title: 'test: cleared'
+        title: ''
       });
-      alert("created:" + title);
+      //alert("created:" + title);
     }
   }
 });

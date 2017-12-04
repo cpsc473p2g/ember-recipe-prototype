@@ -14,6 +14,7 @@ Router.map(function() {
   });
 
   this.route('tasks', function() {});
+  this.route('results');
 });
 
 export default Router;
