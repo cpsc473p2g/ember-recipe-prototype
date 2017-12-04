@@ -1,15 +1,18 @@
 <nav class="navbar navbar-default">
-  <a class="navbar-brand" href="#">Recipe Recon</a>
 
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="nav navbar-nav">
+      <li>
+        {{#link-to 'index'}}Recipe Recon{{/link-to}}
+      </li>
       <li>
         {{#link-to 'favorites'}}My Favorites{{/link-to}}
       </li>
     </ul>
   </div>
 </nav>
+
 
 <main role="main" class="container">
   <div class="row">

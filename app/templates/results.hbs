@@ -1,7 +1,23 @@
 {{#each model as |recipe|}}
   <div class="well">
-    {{recipe.name}}
+
+    <h1>{{recipe.name}}</h1>
+    <div>From <a href="{{recipe.sourceUrl}}">{{recipe.sourceSiteName}}</a></div>
+    <div>Makes {{recipe.yield}}</div>
+    <img src="{{recipe.imageUrl}}" alt=""/>
+    <h2>Ingredients</h2>
+    <ul>
+    	{{#each recipe.ingredientLines as |ingredient|}}
+    	<li>{{ingredient}}</li>
+    	{{/each}}
+    </ul>
+    <button type="button" class="btn btn-secondary btn-lg" {{action 'add' recipe.name recipe.sourceSiteName recipe.yield recipe.sourceUrl recipe.imageUrl recipe.ingredientLines recipe.attributionHtml}}>
+      Add to My Favorites
+    </button>
+    <div>{{{recipe.attributionHtml}}}</div>
+
   </div>
+
 {{/each}}
 
 {{outlet}}
