@@ -1,4 +1,4 @@
-
+{{outlet}}
 
 <h1>My Favorite Recipes</h1>
 
@@ -14,8 +14,6 @@
     <div style="display:block; padding-bottom: 20px">{{favorite.comment}}</div>
     {{#link-to 'favorites.edit' favorite.id class='btn' }}Add note{{/link-to}}
     <button {{action 'deleteTask' favorite.id}} class="btn btn-danger">Delete</button>
-
-    {{outlet}}
   </div>
   {{/if}}
 {{/each}}
