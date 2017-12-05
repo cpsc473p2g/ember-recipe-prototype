@@ -1,0 +1,22 @@
+<div class="form-inline">
+  <select class="form-control" onchange={{action (mut selectedValue) value='target.value'}}>
+    <option value="">
+      {{#if placeholder}}
+        {{placeholder}}
+      {{else}}
+        Add an item...
+      {{/if}}
+    </option>
+    {{#each items as |item|}}
+      <option value={{item.value}}>{{item.text}}</option>
+    {{/each}}
+  </select>
+  <button class="btn btn-default" {{action 'addItem' selectedValue}}>
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
+</div>
+<ul class="list-group">
+  {{#each addedItems as |item|}}
+    <li class="list-group-item">{{item.text}} <button class="close" {{action 'removeItem' item.value}}><span class="glyphicon glyphicon-remove"></span></button></li>
+  {{/each}}
+</ul>
