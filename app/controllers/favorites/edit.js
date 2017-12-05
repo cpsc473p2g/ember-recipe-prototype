@@ -6,7 +6,7 @@ export default Controller.extend({
       var self = this;
 
       var note = this.get('model.comment');
-      
+
       //Update task
       this.store.findRecord('favorite',id).then(function(favorite){
         favorite.set('comment', note);
