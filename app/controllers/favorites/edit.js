@@ -5,11 +5,11 @@ export default Controller.extend({
     editTask: function(id){
       var self = this;
 
-      var title = this.get('model.title');
-
+      var note = this.get('model.comment');
+      
       //Update task
       this.store.findRecord('favorite',id).then(function(favorite){
-        favorite.set('title',title);
+        favorite.set('comment', note);
 
         //save favorite to database
         favorite.save();

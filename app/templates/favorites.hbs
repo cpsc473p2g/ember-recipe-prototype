@@ -8,9 +8,11 @@
 {{#each model as |favorite|}}
 {{#if (eq favorite.uid session.currentUser.email)}}
   <div class="well">
-    <h4>{{#link-to 'favorites.edit' favorite.id}}{{favorite.title}}{{/link-to}}</h4>
+    <h4>{{favorite.title}}</h4>
     <div>From <a href="{{favorite.source}}">{{favorite.sitename}}</a></div>
-    <a href="{{favorite.source}}"><img src="{{favorite.image}}" alt=""/></a>
+    <a href="{{favorite.source}}"><img src="{{favorite.image}}" style="display: block" alt=""/></a>
+    <div style="display:block; padding-bottom: 20px">{{favorite.comment}}</div>
+    {{#link-to 'favorites.edit' favorite.id class='btn' }}Add note{{/link-to}}
     <button {{action 'deleteTask' favorite.id}} class="btn btn-danger">Delete</button>
   </div>
   {{/if}}

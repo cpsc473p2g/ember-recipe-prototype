@@ -5,5 +5,6 @@ export default DS.Model.extend({
   sitename: DS.attr('string'),
   source: DS.attr('string'),
   image: DS.attr('string'),
-  uid: DS.attr('string')
+  uid: DS.attr('string'),
+  comment: DS.attr('string')
 });
