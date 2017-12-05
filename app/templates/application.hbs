@@ -1,36 +1,48 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="margin-bottom: 0;z-index: 1;
+background-color: rgba(255,255,255,0.8);border-radius: 0;border-style: hidden;">
 
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="nav navbar-nav">
       <li>
-        {{#link-to 'index'}}Recipe Recon{{/link-to}}
+        {{#link-to 'index'}}Home{{/link-to}}
       </li>
+      {{#if session.isAuthenticated}}
       <li>
-        {{#link-to 'favorites'}}My Favorites{{/link-to}}
+        {{#link-to 'favorites'}}My Favorite Recipes{{/link-to}}
       </li>
+      {{/if}}
     </ul>
+
+    <div style="display: inline-block;
+    float: right; margin-top: 13px;">
+    {{#if session.isAuthenticated}}
+      Hello {{session.currentUser.displayName}}!
+      <button {{action "signOut"}}>Sign out</button>
+    {{else}}
+      <button {{action "signIn" "google"}}>Sign in with Google</button>
+    {{/if}}</div>
   </div>
 </nav>
 
+<div id="hero-bg"></div>
 
+<div id="hero-text">
+  RecipeRecon
+  </div>
 
-<main role="main" class="container">
-  {{#if session.isAuthenticated}}
-    Logged in as {{session.currentUser.displayName}}
-    <button {{action "signOut"}}>Sign out</button>
-  {{else}}
-    <button {{action "signIn" "google"}}>Sign in with Google</button>
-  {{/if}}
+<div id="hero-body">
+
+  <div class="hero-body-text">
+
   <div class="row">
+
     <div class="col-md-12">
       {{outlet}}
     </div>
-
   </div>
+</div>
 
+</div>
 
-
-
-</main>
 <!-- /.container -->

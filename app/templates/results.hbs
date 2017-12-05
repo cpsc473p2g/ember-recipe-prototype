@@ -11,7 +11,7 @@
     	<li>{{ingredient}}</li>
     	{{/each}}
     </ul>
-    <button type="button" class="btn btn-secondary btn-lg" {{action 'add' recipe.name recipe.sourceSiteName recipe.yield recipe.sourceUrl recipe.imageUrl recipe.ingredientLines recipe.attributionHtml}}>
+    <button type="button" class="btn btn-secondary btn-lg" {{action 'add' recipe.name recipe.sourceSiteName recipe.yield recipe.sourceUrl recipe.imageUrl recipe.ingredientLines recipe.attributionHtml session.currentUser.email}}>
       Add to My Favorites
     </button>
     <div>{{{recipe.attributionHtml}}}</div>

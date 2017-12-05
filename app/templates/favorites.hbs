@@ -6,12 +6,14 @@
 -->
 
 {{#each model as |favorite|}}
+{{#if (eq favorite.uid session.currentUser.email)}}
   <div class="well">
     <h4>{{#link-to 'favorites.edit' favorite.id}}{{favorite.title}}{{/link-to}}</h4>
     <div>From <a href="{{favorite.source}}">{{favorite.sitename}}</a></div>
-    <img src="{{favorite.image}}" alt=""/>
+    <a href="{{favorite.source}}"><img src="{{favorite.image}}" alt=""/></a>
     <button {{action 'deleteTask' favorite.id}} class="btn btn-danger">Delete</button>
   </div>
+  {{/if}}
 {{/each}}
 
 <!--

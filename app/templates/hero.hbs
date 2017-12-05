@@ -1,0 +1,24 @@
+<div id="hero-bg"></div>
+
+<div id="hero-text">
+  RecipeRecon
+  </div>
+
+<div id="hero-body">
+  <div class="hero-body-text">
+  <div class="row">
+    <div class="col-md-12">
+      {{outlet}}
+    </div>
+  </div>
+</div>
+  {{#if session.isAuthenticated}}
+    Hello {{session.currentUser.displayName}}!
+    <button {{action "signOut"}}>Sign out</button>
+  {{else}}
+    <button {{action "signIn" "google"}} style="background-color: #4885ed;
+    color: #fff;
+    height: 35px;
+    width: 100%;">Sign in with Google</button>
+  {{/if}}
+</div>
